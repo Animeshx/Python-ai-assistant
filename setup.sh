@@ -27,13 +27,13 @@ fi
 #-----------------------------------
 # System dependencies installation
 #-----------------------------------
-sudo apt-get update && /
-sudo apt-get install python-dev && /
-sudo apt-get install portaudio19-dev python-pyaudio python3-pyaudio && /
-sudo apt-get install libasound2-plugins libsox-fmt-all libsox-dev sox ffmpeg && /
-sudo apt-get install espeak && /
-sudo apt-get install python3-pip && /
-sudo apt-get install python3-setuptools
+pkg update && /
+pkg install python-dev && /
+pkg install portaudio19-dev python-pyaudio python3-pyaudio && /
+pkg install libasound2-plugins libsox-fmt-all libsox-dev sox ffmpeg && /
+pkg install espeak && /
+pkg install python && /
+pkg install python-setuptools
 
 RESULT=$?
 if  [ $RESULT -eq 0 ]; then
@@ -47,7 +47,7 @@ fi
 #-----------------------------------
 # Install virtualenv
 #-----------------------------------
-pip3 install virtualenv
+pip install virtualenv
 
 RESULT=$?
 if  [ $RESULT -eq 0 ]; then
@@ -76,10 +76,10 @@ fi
 source $JARVIS_DIR/$VIRTUAL_ENV/bin/activate
 
 # Install pip in virtualenv
-sudo apt-get install python3-pip
+pkg install python
 
 # Install python requirements
-pip3 install -r $JARVIS_DIR/requirements.txt
+pip install -r $JARVIS_DIR/requirements.txt
 
 RESULT=$?
 if  [ $RESULT -eq 0 ]; then
@@ -92,7 +92,7 @@ fi
 #-----------------------------------
 # Install nltk dependencies
 #-----------------------------------
-python3 -c "import nltk; nltk.download('punkt'); nltk.download('averaged_perceptron_tagger')"
+python -c "import nltk; nltk.download('punkt'); nltk.download('averaged_perceptron_tagger')"
 
 RESULT=$?
 if  [ $RESULT -eq 0 ]; then
@@ -105,8 +105,8 @@ fi
 #-----------------------------------
 # Create log access
 #-----------------------------------
-sudo touch /var/log/jarvis.log && \
-sudo chmod 777 /var/log/jarvis.log
+touch /var/log/jarvis.log && \
+chmod 777 /var/log/jarvis.log
 
 RESULT=$?
 if  [ $RESULT -eq 0 ]; then
@@ -139,7 +139,7 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongod
 sudo apt-get update
 
 # Install a specific release of MongoDB
-sudo apt-get install -y mongodb-org=4.2.5 mongodb-org-server=4.2.5 mongodb-org-shell=4.2.5 mongodb-org-mongos=4.2.5 mongodb-org-tools=4.2.5
+pkg install  mongodb-org=4.2.5 mongodb-org-server=4.2.5 mongodb-org-shell=4.2.5 mongodb-org-mongos=4.2.5 mongodb-org-tools=4.2.5
 
 #-----------------------------------
 # Finished
